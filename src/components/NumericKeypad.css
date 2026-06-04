@@ -1,0 +1,61 @@
+.keypad {
+  width: 100%;
+  max-width: 280px;
+}
+
+.keypad__display {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  background: #f5f5f5;
+  border-radius: 12px;
+  color: #1a1a2e;
+  min-height: 3rem;
+  direction: ltr;
+}
+
+.keypad__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.keypad__key {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 0.85rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 14px;
+  background: white;
+  color: #1a1a2e;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.keypad__key:hover:not(:disabled) {
+  border-color: #FF6B35;
+  background: #fff5f0;
+}
+
+.keypad__key:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.keypad__key--action {
+  font-size: 0.85rem;
+}
+
+.keypad__key--submit {
+  background: linear-gradient(135deg, #FF6B35, #e65100);
+  color: white;
+  border-color: #FF6B35;
+}
+
+.keypad__key--submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e65100, #bf360c);
+}

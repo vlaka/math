@@ -1,0 +1,165 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 600px;
+  min-height: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 8px 32px rgba(255, 107, 53, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+}
+
+.card--correct {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  box-shadow: 0 8px 32px rgba(76, 175, 80, 0.25);
+}
+
+.card--tryagain {
+  background: linear-gradient(135deg, #fff8e1, #ffecb3);
+  box-shadow: 0 8px 32px rgba(255, 160, 0, 0.2);
+}
+
+.card__problem-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.card__problem {
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  font-weight: 900;
+  color: #1a1a2e;
+  line-height: 1.3;
+  text-align: center;
+  direction: ltr;
+}
+
+.card__answer {
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  font-weight: 800;
+  color: #004E89;
+  direction: ltr;
+}
+
+.card__answer--inline {
+  font-size: 1.75rem;
+}
+
+.card__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.card__actions-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.card__btn {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  min-width: 120px;
+}
+
+.card__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card__btn--reveal {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.card__btn--know {
+  background: linear-gradient(135deg, #66bb6a, #43a047);
+  color: white;
+}
+
+.card__btn--learning {
+  background: linear-gradient(135deg, #ffa726, #fb8c00);
+  color: white;
+}
+
+.card__btn--mic {
+  background: linear-gradient(135deg, #FF6B35, #e65100);
+  color: white;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+}
+
+.card__btn--mic-active {
+  animation: pulse 1.2s infinite;
+  background: linear-gradient(135deg, #ff5252, #f44336);
+}
+
+.card__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.card__feedback {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.card__feedback--correct {
+  color: #2e7d32;
+}
+
+.card__feedback--tryagain {
+  color: #e65100;
+  font-size: 1.2rem;
+}
+
+.card__heard {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.card__interim {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.2rem;
+  color: #FF6B35;
+  opacity: 0.8;
+  min-height: 1.8rem;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(244, 67, 54, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
+}
+
+@media (max-width: 480px) {
+  .card {
+    min-height: 300px;
+    padding: 1.5rem;
+  }
+}

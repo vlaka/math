@@ -1,0 +1,248 @@
+.deck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.deck__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.deck__back {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 12px;
+  color: #555;
+}
+
+.deck__back:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.deck__progress {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.deck__progress-bar {
+  flex: 1;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.deck__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF6B35, #004E89);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.deck__progress-text {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  color: #888;
+  min-width: 50px;
+  text-align: center;
+}
+
+.deck__debug {
+  font-size: 0.65rem;
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.85);
+  color: #0f0;
+  padding: 0.5rem;
+  border-radius: 8px;
+  max-height: 150px;
+  overflow: auto;
+  width: 100%;
+  direction: ltr;
+  text-align: left;
+}
+
+.deck__quest-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ff9800;
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deck-done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  min-height: 60vh;
+  padding: 2rem;
+  text-align: center;
+}
+
+.deck-done__emoji {
+  font-size: 4rem;
+}
+
+.deck-done__title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a2e;
+}
+
+.deck-done__subtitle {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.deck-done__score {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #FF6B35;
+}
+
+.deck-done__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.deck-done__btn {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.deck-done__btn--restart {
+  background: linear-gradient(135deg, #FF6B35, #e65100);
+  color: white;
+}
+
+.deck-done__btn--back {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.quest-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 2rem;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+.quest-result__stars {
+  font-size: 3rem;
+}
+
+.quest-result__title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.quest-result__name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  padding: 0.5rem 1.5rem;
+  background: #fff8e1;
+  border-radius: 16px;
+  border: 2px solid #ffe082;
+}
+
+.quest-result__stats {
+  display: flex;
+  gap: 2rem;
+}
+
+.quest-result__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.quest-result__stat-value {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.quest-result__stat-label {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.quest-result__bar {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 28px;
+  background: #f0f0f0;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.quest-result__bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff9800, #f57c00);
+  border-radius: 14px;
+  transition: width 1s ease;
+}
+
+.quest-result__bar-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.quest-result__btn {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 16px;
+  background: white;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
