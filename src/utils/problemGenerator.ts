@@ -1,9 +1,8 @@
 import type { Difficulty, Operation, Problem } from '../data/levels'
 import {
   OPERATIONS,
-  PLAYABLE_LEVELS,
+  playableLevelsForDifficulty,
   getLevelConfig,
-  isMixedLevel,
 } from '../data/levels'
 import { shuffleArray } from './spaced-repetition'
 
@@ -114,11 +113,12 @@ export function generateProblem(level: number): Problem {
   const cfg = getLevelConfig(level)
 
   if (cfg.operation === 'mixed') {
-    const pick = PLAYABLE_LEVELS[randInt(0, PLAYABLE_LEVELS.length - 1)]
+    const pool = playableLevelsForDifficulty(cfg.difficulty)
+    const pick = pool[randInt(0, pool.length - 1)]
     return generateByOperation(pick.operation, level, pick.difficulty)
   }
 
-  return generateByOperation(cfg.operation as Operation, level, cfg.difficulty!)
+  return generateByOperation(cfg.operation, level, cfg.difficulty)
 }
 
 function parseProblemId(id: string): Problem | null {
@@ -132,22 +132,27 @@ function parseProblemId(id: string): Problem | null {
   return makeProblem(0, a, b, op)
 }
 
-function matchesLevelConfig(problem: Problem, cfg: ReturnType<typeof getLevelConfig>): boolean {
-  if (cfg.operation === 'mixed') return true
-  if (problem.operation !== cfg.operation) return false
-
+function matchesDifficulty(problem: Problem, difficulty: Difficulty): boolean {
   const { a, b, answer, operation } = problem
 
   switch (operation) {
     case 'add':
-      return cfg.difficulty === 1 ? a <= 20 && b <= 20 && answer <= 40 : a >= 10 && b >= 10
+      return difficulty === 1 ? a <= 20 && b <= 20 && answer <= 40 : a >= 10 && b >= 10
     case 'sub':
-      return cfg.difficulty === 1 ? a <= 20 && b <= 20 : a >= 10
+      return difficulty === 1 ? a <= 20 && b <= 20 : a >= 10
     case 'mul':
-      return cfg.difficulty === 1 ? a <= 10 && b <= 10 : a >= 10 || b >= 10
+      return difficulty === 1 ? a <= 10 && b <= 10 : a >= 10 || b >= 10
     case 'div':
-      return cfg.difficulty === 1 ? answer <= 10 : answer > 10
+      return difficulty === 1 ? answer <= 10 : answer > 10
   }
+}
+
+function matchesLevelConfig(problem: Problem, cfg: ReturnType<typeof getLevelConfig>): boolean {
+  if (cfg.operation === 'mixed') {
+    return matchesDifficulty(problem, cfg.difficulty)
+  }
+  if (problem.operation !== cfg.operation) return false
+  return matchesDifficulty(problem, cfg.difficulty)
 }
 
 export function generateDeck(
@@ -163,8 +168,7 @@ export function generateDeck(
     .filter(([, p]) => p.incorrect > p.correct)
     .map(([id]) => parseProblemId(id))
     .filter((p): p is Problem => p != null)
-    .filter(p => isMixedLevel(level) || p.operation === cfg.operation)
-    .filter(p => isMixedLevel(level) || matchesLevelConfig(p, cfg))
+    .filter(p => matchesLevelConfig(p, cfg))
     .sort((a, b) => {
       const pa = progress[a.id]
       const pb = progress[b.id]

@@ -85,7 +85,9 @@ export function ProblemCard({
   return (
     <div className={`card ${feedbackClass}`}>
       <div className="card__problem-container">
-        <span className="card__problem">{problem.display}</span>
+        <span className="card__problem">
+          {feedback === 'correct' ? answerDisplay : problem.display}
+        </span>
         {revealed && (
           <span className="card__answer">{answerDisplay}</span>
         )}
@@ -153,7 +155,11 @@ export function ProblemCard({
               </div>
               <span className="card__answer card__answer--inline">{answerDisplay}</span>
               <div className="card__actions-row">
-                <button className="card__btn card__btn--reveal" onClick={() => { setFeedback(null); setRevealed(false) }}>
+                <button className="card__btn card__btn--reveal" onClick={() => {
+                  setFeedback(null)
+                  setRevealed(false)
+                  setKeypadValue('')
+                }}>
                   🎤 {t.card.tryAgain}
                 </button>
                 <button className="card__btn card__btn--learning" onClick={handleIncorrect}>

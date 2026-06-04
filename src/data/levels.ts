@@ -16,7 +16,7 @@ export interface Problem {
 export interface LevelConfig {
   level: number
   operation: Operation | 'mixed'
-  difficulty: Difficulty | null
+  difficulty: Difficulty
   icon: string
 }
 
@@ -34,7 +34,8 @@ export const LEVELS: LevelConfig[] = [
   { level: 6, operation: 'mul', difficulty: 2, icon: 'level-mul' },
   { level: 7, operation: 'div', difficulty: 1, icon: 'level-div' },
   { level: 8, operation: 'div', difficulty: 2, icon: 'level-div' },
-  { level: 9, operation: 'mixed', difficulty: null, icon: 'level-mixed' },
+  { level: 9, operation: 'mixed', difficulty: 1, icon: 'level-mixed' },
+  { level: 10, operation: 'mixed', difficulty: 2, icon: 'level-mixed' },
 ]
 
 export const LEVEL_COUNT = LEVELS.length
@@ -58,11 +59,9 @@ export function getLevelTitle(level: number, t: Translations): string {
   return t.levels[cfg.operation]
 }
 
-export function getLevelDifficultyLabel(level: number, t: Translations): string | null {
+export function getLevelDifficultyLabel(level: number, t: Translations): string {
   const cfg = getLevelConfig(level)
-  if (cfg.difficulty === 1) return t.levels.difficulty1
-  if (cfg.difficulty === 2) return t.levels.difficulty2
-  return null
+  return cfg.difficulty === 1 ? t.levels.difficulty1 : t.levels.difficulty2
 }
 
 export function getLevelLabel(level: number, t: Translations): string {
@@ -74,5 +73,9 @@ export function getLevelLabel(level: number, t: Translations): string {
 export const OPERATIONS: Operation[] = ['add', 'sub', 'mul', 'div']
 
 export const PLAYABLE_LEVELS = LEVELS.filter(
-  (l): l is PlayableLevelConfig => l.operation !== 'mixed' && l.difficulty != null,
+  (l): l is PlayableLevelConfig => l.operation !== 'mixed',
 )
+
+export function playableLevelsForDifficulty(difficulty: Difficulty): PlayableLevelConfig[] {
+  return PLAYABLE_LEVELS.filter(l => l.difficulty === difficulty)
+}

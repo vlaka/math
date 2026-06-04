@@ -31,9 +31,7 @@ export function LevelSelector({ t, onSelect, onBack }: LevelSelectorProps) {
               />
               <div className="levels__card-info">
                 <h3 className="levels__card-title">{getLevelTitle(level, t)}</h3>
-                {difficulty && (
-                  <span className="levels__card-badge">{difficulty}</span>
-                )}
+                <span className="levels__card-badge">{difficulty}</span>
               </div>
             </button>
           )
