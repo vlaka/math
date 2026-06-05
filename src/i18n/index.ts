@@ -44,6 +44,7 @@ export interface Translations {
     language: string
     resetProgress: string
     resetConfirm: string
+    clearCache: string
     back: string
   }
   stats: {

@@ -17,8 +17,6 @@ const LISTEN_TIMEOUT_MS = 8000
 const MAX_RESTARTS = 5
 const RESTART_DELAY_MS = 300
 
-const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent)
-
 type SpeechRecognitionInstance = InstanceType<typeof webkitSpeechRecognition>
 
 export function useNumberRecognition(lang: Lang) {
@@ -98,7 +96,7 @@ export function useNumberRecognition(lang: Lang) {
       const createRecognition = () => {
         const recognition = new (SpeechRecognitionAPI as new () => SpeechRecognitionInstance)()
         recognition.lang = recognitionLang
-        recognition.continuous = !isMobile
+        recognition.continuous = false
         recognition.interimResults = true
         recognition.maxAlternatives = 5
         recognitionRef.current = recognition
@@ -110,7 +108,12 @@ export function useNumberRecognition(lang: Lang) {
             const res = event.results[r]
 
             if (res.isFinal) {
-              addDebug(`result FINAL: "${res[0].transcript}"`)
+              const transcript = res[0].transcript
+              addDebug(`result FINAL: "${transcript}"`)
+              if (!transcript.trim()) {
+                addDebug('empty final — ignoring, will restart')
+                return
+              }
               for (let i = 0; i < res.length; i++) {
                 const t = res[i].transcript
                 bestInterimRef.current = t

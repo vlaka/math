@@ -39,6 +39,7 @@ export const ru = {
     language: 'Язык интерфейса',
     resetProgress: 'Сбросить прогресс',
     resetConfirm: 'Точно сбросить весь прогресс?',
+    clearCache: 'Обновить приложение',
     back: 'Назад',
   },
   stats: {
